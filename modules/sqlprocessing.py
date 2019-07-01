@@ -1,4 +1,4 @@
-import mysql.connector
+from mysql import connector
 
 
 class SqlProc:
@@ -16,7 +16,7 @@ class SqlProc:
         self.database_name = database_name
 
     def open_connection(self):
-        self.database = mysql.connector.connect(
+        self.database = connector.connect(
             host=self.host,
             user=self.user,
             passwd=self.password,

@@ -1,5 +1,5 @@
-import telegram
-import sqlprocessing
+import modules.telegram as telegram
+import modules.sqlprocessing as sqlprocessing
 import config
 import time
 

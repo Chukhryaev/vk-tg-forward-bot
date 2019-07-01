@@ -133,20 +133,20 @@ class Worker:
         return MSG
 
     def tg_user_parse(self, userObj):
-        USER = {'user':None}
-        id = {'id':None}
-        first_name = {'first_name':None}
-        last_name = {'last_name':None}
-        username = {'username':None}
+        USER = {'user': None}
+        id = {'id': None}
+        first_name = {'first_name': None}
+        last_name = {'last_name': None}
+        username = {'username': None}
         if 'id' in userObj:
-            id = {'id':userObj["id"]}
+            id = {'id': userObj["id"]}
         if 'first_name' in userObj:
-            first_name = {'first_name':userObj["first_name"]}
+            first_name = {'first_name': userObj["first_name"]}
         if 'last_name' in userObj:
-            last_name = {'last_name':userObj["last_name"]}
+            last_name = {'last_name': userObj["last_name"]}
         if 'username' in userObj:
-            username = {'username':userObj["username"]}
-        USER = {'user':{id, first_name, last_name, username}}
+            username = {'username': userObj["username"]}
+        USER = {'user': {id, first_name, last_name, username}}
         return USER
 
     def tg_chat_parse(self, chatObj):

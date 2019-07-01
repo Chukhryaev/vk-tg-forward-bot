@@ -1,15 +1,15 @@
-import sqlprocessing
+import modules.sqlprocessing as sqlprocessing
 import config
-import core.vkontakt as vkontakt
-import telegram
+import modules.vkontakt as vkontakt
+import modules.telegram as telegram
 import json
-import workerAPI
+import modules.worker_api as worker_api
 import time
 
 dataBase = sqlprocessing.SqlProc(config.db_host, config.db_user, config.db_password, config.db_name)
 vk_bot = vkontakt.Bot(config.vk_token)
 tg_bot = telegram.Bot(config.tg_token)
-worker = workerAPI.Worker()
+worker = worker_api.Worker()
 
 while True:
     time.sleep(1)

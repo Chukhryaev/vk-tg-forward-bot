@@ -1,15 +1,15 @@
-import mysql.connector
+from mysql import connector
 import config
 import logging
 
 log = logging.getLogger(__name__)
 
 # create database
-db = mysql.connector.connect(
+db = connector.connect(
     host=config.db_host,
     user=config.db_user,
     passwd=config.db_password
-)
+    )
 
 cursor = db.cursor()
 
@@ -29,7 +29,7 @@ db = mysql.connector.connect(
     user=config.db_user,
     passwd=config.db_password,
     database=config.db_name
-)
+    )
 
 cursor = db.cursor()
 
@@ -46,7 +46,7 @@ cursor.execute(
     'TgChatID VARCHAR(20) DEFAULT NULL,'
     'VkChatID VARCHAR(20) DEFAULT NULL,'
     'IsConnected BOOL NOT NULL DEFAULT 0)'
-)
+    )
 
 cursor.execute('SHOW TABLES')
 
