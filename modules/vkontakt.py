@@ -21,7 +21,7 @@ class Bot:
         self.group_id = group_id
 
     def get_long_poll_server(self):
-        r = requests.get(f"{self.url}groups.getLongPollServer?group_id={self.group_id}&access_token={self.token}&v=5.92")
+        r = requests.get(f'{self.url}groups.getLongPollServer?group_id={self.group_id}&access_token={self.token}&v=5.92')
         print(r.json())
         self.key = r.json().get('response').get('key')
         self.ts = r.json().get('response').get('ts')
@@ -30,8 +30,8 @@ class Bot:
         self.token = token
 
     def wait_for_event(self):
-        r = requests.get(f"{self.server}?act=a_check&key={self.key}&ts={self.ts}&wait={self.wait}")
-        if r.text.find("failed") != -1:
+        r = requests.get(f'{self.server}?act=a_check&key={self.key}&ts={self.ts}&wait={self.wait}')
+        if r.text.find('failed') != -1:
             self.get_long_poll_server()
         else:
             if len(r.json().get('updates')) != 0:
@@ -43,15 +43,15 @@ class Bot:
 
     def send_message(self, chat_id, message):
         rand_id = str(random.randint(1, 18446744073709551615))
-        r = requests.get(f"{self.url}messages.send?random_id={rand_id}&peer_id={chat_id}&message={message}&access_token={self.token}&v=5.92")
+        r = requests.get(f'{self.url}messages.send?random_id={rand_id}&peer_id={chat_id}&message={message}&access_token={self.token}&v=5.92')
         print(r.json())
 
     def get_name_by_id(self, user_id):
         name = []
-        r = requests.get(f"{self.url}users.get?user_ids={user_id}&access_token={self.token}&v=5.92")
+        r = requests.get(f'{self.url}users.get?user_ids={user_id}&access_token={self.token}&v=5.92')
         if(r.text.find('error', 0, 10)) != -1:
-            name.append("Error")
-            name.append("Name")
+            name.append('Error')
+            name.append('Name')
             return name
         name.append(r.json().get('response')[0].get('first_name'))
         name.append(r.json().get('response')[0].get('last_name'))

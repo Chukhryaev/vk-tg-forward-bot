@@ -34,11 +34,15 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 cursor.execute(
-    'CREATE TABLE events ('
+    'CREATE TABLE tokens ('
     'ID BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,'
-    'Event MEDIUMTEXT NOT NULL,'
+    'token_1 VARCHAR(20),'
+    'token_2 VARCHAR(20)'
+    'SelfID VARCHAR(20)'
+    'DestID VARCHAR(20)'
+    'Date '
     'Source BOOL NOT NULL)'
-)
+    )
 
 cursor.execute(
     'CREATE TABLE chats ('

@@ -20,7 +20,7 @@ vk_bot = vkontakt.Bot(config.vk_token)
 tg_bot = telegram.Bot(config.tg_token)
 
 while True:
-    messages = dataBase.fetch_all("messages")
+    messages = dataBase.fetch_all('messages')
     for message in messages:
         if message[6]:
             tg_bot.send_message(message[7], message[3])

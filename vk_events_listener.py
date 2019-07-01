@@ -11,4 +11,4 @@ while True:
     time.sleep(0.5)
     event = vk_bot.wait_for_event()
     print(event)
-    db.add_event("events", event, 1)
+    db.add_event('events', event, 1)

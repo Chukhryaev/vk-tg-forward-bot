@@ -29,7 +29,7 @@ class SqlProc:
 
     def fetch_all(self, table_name):
         self.open_connection()
-        sql = "SELECT * FROM " + table_name
+        sql = 'SELECT * FROM ' + table_name
         self.cursor.execute(sql)
         ans = self.cursor.fetchall()
         self.close_connection()
@@ -41,27 +41,27 @@ class SqlProc:
         values.append(None)
         values.append(str(response))
         values.append(source)
-        self.cursor.execute("INSERT INTO " + table_name + " VALUES(%s,%s,%s)", values)
+        self.cursor.execute('INSERT INTO ' + table_name + ' VALUES(%s,%s,%s)', values)
         self.database.commit()
         self.close_connection()
 
     def add_vk_chat(self, table_name, chat_id):
         self.open_connection()
-        values = ["NULL", "NULL", str(chat_id)]
-        self.cursor.execute("INSERT INTO " + table_name + " VALUES (%s,%s,%s)", values)
+        values = ['NULL', 'NULL', str(chat_id)]
+        self.cursor.execute('INSERT INTO ' + table_name + ' VALUES (%s,%s,%s)', values)
         self.database.commit()
         self.close_connection()
 
     def add_tg_chat(self, table_name, chat_id):
         self.open_connection()
-        values = ["NULL", str(chat_id), "NULL"]
-        self.cursor.execute("INSERT INTO " + table_name + " VALUES (%s,%s,%s);", values)
+        values = ['NULL', str(chat_id), 'NULL']
+        self.cursor.execute('INSERT INTO ' + table_name + ' VALUES (%s,%s,%s);', values)
         self.database.commit()
         self.close_connection()
 
     def is_seen_in_column(self, table_name, column, chat_id):
         self.open_connection()
-        sql = "SELECT * FROM " + table_name + " WHERE " + str(column) + " = " + str(chat_id)
+        sql = 'SELECT * FROM ' + table_name + ' WHERE ' + str(column) + ' = ' + str(chat_id)
         self.cursor.execute(sql)
         ans_len = len(self.cursor.fetchall())
         self.close_connection()
@@ -69,7 +69,7 @@ class SqlProc:
 
     def delete_row_by_id(self, table_name, deleted_id):
         self.open_connection()
-        sql = "DELETE FROM " + table_name + " WHERE id = " + str(deleted_id)
+        sql = 'DELETE FROM ' + table_name + ' WHERE id = ' + str(deleted_id)
         self.cursor.execute(sql)
         self.database.commit()
         self.close_connection()
@@ -77,11 +77,11 @@ class SqlProc:
     def link_chats(self, table_name, source_chat_id, chat_id, source):
         self.open_connection()
         if source == 0:
-            sql = "SELECT * FROM " + table_name + " WHERE " + "VkChatID" + " = " + str(chat_id) + " AND TgChatID = NULL"
+            sql = 'SELECT * FROM ' + table_name + ' WHERE ' + 'VkChatID' + ' = ' + str(chat_id) + ' AND TgChatID = NULL'
             self.cursor.execute(sql)
             fetch = self.cursor.fetchall()
             if len(fetch) == 1:
-                sql = "UPDATE " + table_name + " SET vk_chat_id = " + str(chat_id) + " WHERE tg_chat_id = " + str(source_chat_id)
+                sql = 'UPDATE ' + table_name + ' SET vk_chat_id = ' + str(chat_id) + ' WHERE tg_chat_id = ' + str(source_chat_id)
                 self.cursor.execute(sql)
                 self.database.commit()
                 self.delete_row_by_id(table_name, fetch[0])
@@ -92,11 +92,11 @@ class SqlProc:
                 return 1
 
         elif source == 1:
-            sql = "SELECT * FROM " + table_name + " WHERE " + "vk_chat_id = NULL" + " AND tg_chat_id = " + str(chat_id)
+            sql = 'SELECT * FROM ' + table_name + ' WHERE ' + 'vk_chat_id = NULL' + ' AND tg_chat_id = ' + str(chat_id)
             self.cursor.execute(sql)
             fetch = self.cursor.fetchall()
             if len(fetch) == 1:
-                sql = "UPDATE " + table_name + " SET tg_chat_id = " + str(chat_id) + " WHERE vk_chat_id = " + str(source_chat_id)
+                sql = 'UPDATE ' + table_name + ' SET tg_chat_id = ' + str(chat_id) + ' WHERE vk_chat_id = ' + str(source_chat_id)
                 self.cursor.execute(sql)
                 self.database.commit()
                 self.delete_row_by_id(table_name, fetch[0])
@@ -111,7 +111,7 @@ class SqlProc:
     def add_message(self, table_name, first_name, last_name, msg_text, forward_msg, attachments, source, chat_id):
         self.open_connection()
         values = [0, str(first_name), str(last_name), str(msg_text), str(forward_msg), str(attachments), str(source), str(chat_id)]
-        self.cursor.execute("INSERT INTO " + table_name + " VALUES (%s,%s,%s,%s,%s,%s,%s,%s);", values)
+        self.cursor.execute('INSERT INTO ' + table_name + ' VALUES (%s,%s,%s,%s,%s,%s,%s,%s);', values)
         self.database.commit()
         self.close_connection()
 
